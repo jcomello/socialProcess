@@ -1,0 +1,9 @@
+<ion-view title="Processes">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="process in processes" type="item-text-wrap" href="#/tab/process/{{process.id}}">
+        {{process.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
