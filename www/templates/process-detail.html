@@ -10,6 +10,9 @@
       <a class="tab-item" ng-click="openRules()">
         <i class="icon ion-information-circled"></i>Rules
       </a>
+      <a class="tab-item" ng-click="openComments()">
+        <i class="icon ion-chatbox"></i>comments
+      </a>
     </div>
     <div class="list">
       <ion-nav-view ></ion-nav-view>
@@ -23,6 +26,26 @@
   <div id="modal-rules" class="modal slide-in-up" ng-controller="RulesCtrl">
     <header class="bar bar-header bar-secondary">
       <h1 class="title">Rules</h1>
+      <button class="button button-clear button-primary" ng-click="close()">Done</button>
+    </header>
+
+    <ion-content class="rules" has-header="true" padding="true">
+      <div class="rule-box" ng-repeat="rule in rules" type="item-text-wrap">
+        {{rule.description}}
+        <ion-list>
+          <ion-item ng-repeat="fact in rule.facts" type="item-text-wrap">
+            {{fact}}
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-content>
+  </div>
+</script>
+
+<script id="modal-comments.html" type="text/ng-template">
+  <div id="modal-comments" class="modal slide-in-up" ng-controller="CommentsCtrl">
+    <header class="bar bar-header bar-secondary">
+      <h1 class="title">Comments</h1>
       <button class="button button-clear button-primary" ng-click="close()">Done</button>
     </header>
 

@@ -15,7 +15,11 @@ angular.module('starter.controllers', [])
   Processes.get($stateParams.processId)
     .success(function (response) {
       $ionicModal.fromTemplateUrl('modal-rules.html', { scope: $scope }).then(function(modal) {
-        $scope.settingsModal = modal;
+        $scope.rulesSettingsModal = modal;
+      });
+
+      $ionicModal.fromTemplateUrl('modal-comments.html', { scope: $scope }).then(function(modal) {
+        $scope.commentsSettingsModal = modal;
       });
 
       $scope.process = response;
@@ -26,7 +30,11 @@ angular.module('starter.controllers', [])
   });
 
   $scope.openRules = function() {
-    $scope.settingsModal.show();
+    $scope.rulesSettingsModal.show();
+  };
+
+  $scope.openComments = function() {
+    $scope.commentsSettingsModal.show();
   };
 })
 
@@ -34,6 +42,14 @@ angular.module('starter.controllers', [])
   $scope.rules = $scope.process.rules
 
   $scope.close = function() {
-    $scope.settingsModal.hide();
+    $scope.rulesSettingsModal.hide();
+  }
+})
+
+.controller('CommentsCtrl', function($scope) {
+  $scope.comments = $scope.process.comments
+
+  $scope.close = function() {
+    $scope.commentsSettingsModal.hide();
   }
 });
