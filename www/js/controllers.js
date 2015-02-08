@@ -25,12 +25,12 @@ angular.module('starter.controllers', [])
       console.log(error);
   });
 
-  $scope.newTask = function() {
+  $scope.openRules = function() {
     $scope.settingsModal.show();
   };
 })
 
-.controller('TaskCtrl', function($scope) {
+.controller('RulesCtrl', function($scope) {
   $scope.rules = $scope.process.rules
 
   $scope.close = function() {

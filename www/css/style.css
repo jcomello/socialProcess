@@ -1,1 +1,15 @@
 /* Empty. Add your own CSS if you like */
+
+
+.rules .rule-box {
+  margin: 10px;
+  padding: 10px;
+}
+
+.rules .scroll:first-child {
+  margin-top: 40px;
+}
+
+.modal {
+  overflow-y: scroll;
+}
