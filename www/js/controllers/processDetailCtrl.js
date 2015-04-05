@@ -1,23 +1,15 @@
 angular.module('starter.controllers', [])
 
-.controller('ProcessesCtrl', function($scope, Processes) {
-  Processes.all()
-    .success(function (response) {
-      $scope.processes = response;
-    })
-
-    .error(function (error) {
-      console.log(error);
-    });
-})
-
 .controller('ProcessDetailCtrl', function($scope, $stateParams, $ionicModal, Processes) {
+  // método faz request http para a API pedindo um processo dado o ID
   Processes.get($stateParams.processId)
     .success(function (response) {
+      // Cria a modal de regras
       $ionicModal.fromTemplateUrl('modal-rules.html', { scope: $scope }).then(function(modal) {
         $scope.rulesSettingsModal = modal;
       });
 
+      // Cria a modal de Comentarios
       $ionicModal.fromTemplateUrl('modal-comments.html', { scope: $scope }).then(function(modal) {
         $scope.commentsSettingsModal = modal;
       });
@@ -30,10 +22,12 @@ angular.module('starter.controllers', [])
   });
 
   $scope.openRules = function() {
+    // abre modal de regras
     $scope.rulesSettingsModal.show();
   };
 
   $scope.openComments = function() {
+    // abre modal de comentários
     $scope.commentsSettingsModal.show();
   };
 })
@@ -43,13 +37,18 @@ angular.module('starter.controllers', [])
 
   $scope.close = function() {
     $scope.rulesSettingsModal.hide();
-  }
+  };
 })
 
 .controller('CommentsCtrl', function($scope) {
-  $scope.comments = $scope.process.comments
+  $scope.comments = $scope.process.comments;
 
   $scope.close = function() {
     $scope.commentsSettingsModal.hide();
-  }
+  };
+
+  // adiciona comentário à lista de comentários já existente
+  $scope.addCommentary = function (comment) {
+    $scope.comments.push(comment);
+  };
 });
