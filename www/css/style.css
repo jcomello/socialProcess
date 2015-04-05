@@ -10,6 +10,10 @@
   margin-top: 40px;
 }
 
+.comments .scroll:first-child {
+  margin-top: 40px;
+}
+
 .modal {
   overflow-y: scroll;
 }
