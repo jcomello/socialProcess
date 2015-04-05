@@ -1,9 +1,23 @@
 angular.module('starter.controllers', [])
 
-.controller('ProcessDetailCtrl', function($scope, $stateParams, $ionicModal, Processes) {
+.controller('ProcessDetailCtrl', function($scope, $stateParams, $ionicModal, Processes, $ionicLoading, $timeout) {
+  $scope.show = function () {
+    $ionicLoading.show({
+      duration: 30000,
+      noBackdrop: true,
+      template: '<p class="item-icon-left">carregando...<ion-spinner icon="lines"/></p>'
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
+
+  $scope.show();
   // método faz request http para a API pedindo um processo dado o ID
   Processes.get($stateParams.processId)
     .success(function (response) {
+      $scope.hide();
       // Cria a modal de regras
       $ionicModal.fromTemplateUrl('modal-rules.html', { scope: $scope }).then(function(modal) {
         $scope.rulesSettingsModal = modal;
