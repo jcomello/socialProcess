@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 
-.controller('ProcessDetailCtrl', function($scope, $stateParams, $ionicModal, Processes, $ionicLoading, $timeout) {
+.controller('ProcessDetailCtrl', ['$scope', '$stateParams', '$ionicModal', 'Processes', '$ionicLoading', '$timeout', function($scope, $stateParams, $ionicModal, Processes, $ionicLoading, $timeout) {
   $scope.show = function () {
     $ionicLoading.show({
       duration: 30000,
@@ -18,10 +18,6 @@ angular.module('starter.controllers', [])
   Processes.get($stateParams.processId)
     .success(function (response) {
       $scope.hide();
-      // Cria a modal de regras
-      $ionicModal.fromTemplateUrl('modal-rules.html', { scope: $scope }).then(function(modal) {
-        $scope.rulesSettingsModal = modal;
-      });
 
       // Cria a modal de Comentarios
       $ionicModal.fromTemplateUrl('modal-comments.html', { scope: $scope }).then(function(modal) {
@@ -29,40 +25,27 @@ angular.module('starter.controllers', [])
       });
 
       $scope.process = response;
+      $scope.rules = $scope.process.rules;
     })
 
     .error(function (error) {
+      $scope.hide();
       console.log(error);
   });
-
-  $scope.openRules = function() {
-    // abre modal de regras
-    $scope.rulesSettingsModal.show();
-  };
 
   $scope.openComments = function() {
     // abre modal de comentários
     $scope.commentsSettingsModal.show();
   };
-})
 
-.controller('RulesCtrl', function($scope) {
-  $scope.rules = $scope.process.rules
+  $scope.openRuleQuestions = function(rule) {
+    $scope.currentRule = rule;
 
-  $scope.close = function() {
-    $scope.rulesSettingsModal.hide();
+    // Cria a modal de Pergunta de regras
+    $ionicModal.fromTemplateUrl('modal-rule-questions.html', { scope: $scope })
+      .then(function(modal) {
+        $scope.ruleQuestionsSettingsModal = modal;
+      });
   };
-})
+}])
 
-.controller('CommentsCtrl', function($scope) {
-  $scope.comments = $scope.process.comments;
-
-  $scope.close = function() {
-    $scope.commentsSettingsModal.hide();
-  };
-
-  // adiciona comentário à lista de comentários já existente
-  $scope.addCommentary = function (comment) {
-    $scope.comments.push(comment);
-  };
-});

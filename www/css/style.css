@@ -17,3 +17,12 @@
 .modal {
   overflow-y: scroll;
 }
+
+.rule-item {
+  white-space: inherit;
+}
+
+.rule-item .description {
+  float: left;
+  width: 80%;
+}

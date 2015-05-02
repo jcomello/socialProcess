@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ProcessesCtrl', function($scope, Processes, $ionicLoading, $timeout) {
+.controller('ProcessesCtrl', ['$scope', 'Processes', '$ionicLoading', '$timeout', function($scope, Processes, $ionicLoading, $timeout) {
   $scope.show = function () {
     $ionicLoading.show({
       duration: 30000,
@@ -20,8 +20,7 @@ angular.module('starter.controllers', [])
       $scope.hide()
       $scope.processes = response;
     })
-
     .error(function (error) {
       console.log(error);
     });
-})
+}])
