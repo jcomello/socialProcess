@@ -17,7 +17,7 @@ angular.module('starter.controllers')
 
       $scope.rule = response;
       $scope.questions = $scope.rule.questions;
-      console.log($scope.questions)
+
       $scope.ruleQuestionsSettingsModal.show();
     })
 
@@ -25,6 +25,20 @@ angular.module('starter.controllers')
       $scope.hide();
       console.log(error);
   });
+
+  $scope.addQuestion = function(title) {
+    var lastQuestion = $scope.questions[$scope.questions.length-1]
+
+    $scope.questions.push({id: lastQuestion.id+1, title: title, from: "João", replies: []});
+  };
+
+  $scope.addQuestionReply = function(question, reply) {
+    var currentQuestion = $scope.questions.filter(function (elem) {
+      return elem.id === question.id;
+    })[0];
+
+    currentQuestion.replies.push(reply)
+  }
 
   $scope.hide = function(){
     $ionicLoading.hide();

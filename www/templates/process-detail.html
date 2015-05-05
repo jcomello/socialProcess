@@ -65,12 +65,37 @@
     </header>
 
     <ion-content class="questions" has-header="true" padding="true">
-      {{questions}}
-      <ion-list>
+      <ion-list ng-init="questions">
         <ion-item ng-repeat="question in questions" type="item-text-wrap">
           <strong>{{question.from}}</strong>: {{question.title}}
+
+          <ion-list>
+            <ion-item ng-repeat="reply in question.replies" type="item-text-wrap">
+              {{reply}}
+            </ion-item>
+          </ion-list>
+
+          <form ng-submit="addQuestionReply(question, question.reply)">
+            <label class="item item-input">
+              <textarea placeholder="Nova resposta" ng-model="question.reply"></textarea>
+            </label>
+
+            <button class="button button-block button-positive" type="submit">
+              Enviar
+            </button>
+          </form>
         </ion-item>
       </ion-list>
+
+      <form ng-submit="addQuestion(question.title)">
+        <label class="item item-input">
+          <textarea placeholder="Novo Comentário" ng-model="question.title"></textarea>
+        </label>
+
+        <button class="button button-block button-positive" type="submit">
+          Enviar
+        </button>
+      </form>
     </ion-content>
   </div>
 </script>
