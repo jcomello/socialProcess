@@ -3,11 +3,11 @@
     <div class="description">{{rule.description}}</div>
 
     <ion-list ng-init="questions" class="questions">
-      <ion-item ng-repeat="question in questions" type="item-text-wrap">
+      <ion-item  href="#/tab/process/{{params.processId}}/rules/{{params.ruleId}}/questions/{{question.id}}/replies" ng-repeat="question in questions" type="item-text-wrap">
         <div class="question body">
           <strong>{{question.from}}</strong>: {{question.title}}
         </div>
-        <div class="question replies" ng-click="openQuestionReplies()"><i class="icon ion-ios-undo"></i></div>
+        <div class="question replies"><i class="icon ion-chatbox"></i> {{question.countReplies}}</div>
       </ion-item>
     </ion-list>
 
@@ -21,32 +21,4 @@
       </button>
     </form>
   </ion-content>
-</div>
-
-<script id="modal-question-replies.html" type="text/ng-template">
-  <div id="modal-question-replies" class="modal slide-in-up" ng-controller="">
-
-    <header class="bar bar-header bar-secondary">
-      <h1 class="title">Respostas</h1>
-      <button class="button button-clear button-primary" ng-click="close()">Fechar</button>
-    </header>
-
-    <ion-content class="comments" has-header="true" padding="true">
-      <form ng-submit="addCommentary(comment)">
-        <ion-list>
-          <ion-item ng-repeat="comment in comments" type="item-text-wrap">
-            {{comment}}
-          </ion-item>
-
-          <label class="item item-input">
-            <textarea placeholder="Comentários" ng-model="comment"></textarea>
-          </label>
-
-          <button class="button button-block button-positive" type="submit">
-            Enviar
-          </button>
-        </ion-list>
-      </form>
-    </ion-content>
-  </div>
-</script>
+</ion-view>

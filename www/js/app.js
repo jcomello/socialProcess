@@ -64,6 +64,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'RuleQuestionsCtrl'
         }
       }
+    })
+    .state('tab.question-replies', {
+      url: '/process/:processId/rules/:ruleId/questions/:questionId/replies',
+      views: {
+        'tab-processes': {
+          templateUrl: 'templates/question-replies.html',
+          controller: 'QuestionRepliesCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback

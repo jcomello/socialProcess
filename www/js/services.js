@@ -15,5 +15,9 @@ angular.module('starter.services', [])
     return $http.get("http://private-506c1-socialprocess.apiary-mock.com/processes/"+ processId + '/rules/' + ruleId);
   };
 
+  factory.getQuestion = function (processId, ruleId, questionId) {
+    return $http.get("http://private-506c1-socialprocess.apiary-mock.com/processes/"+ processId + '/rules/' + ruleId + "/questions/" + questionId);
+  };
+
   return factory;
 });

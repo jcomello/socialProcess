@@ -1,0 +1,19 @@
+<ion-view id="question-replies" has-header="false" padding="true">
+  <ion-content class="replies" has-header="true" padding="true">
+    <form ng-submit="addReply(reply)">
+      <ion-list>
+        <ion-item ng-repeat="reply in replies" type="item-text-wrap">
+          <strong>{{reply.from}}</strong>: {{reply.text}}
+        </ion-item>
+
+        <label class="item item-input">
+          <textarea placeholder="Resposta" ng-model="reply"></textarea>
+        </label>
+
+        <button class="button button-block button-positive" type="submit">
+          Enviar
+        </button>
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>
