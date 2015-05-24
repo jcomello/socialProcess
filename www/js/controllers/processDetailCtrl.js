@@ -19,13 +19,13 @@ angular.module('starter.controllers')
     .success(function (response) {
       $scope.hide();
 
+      $scope.process = response;
+      $scope.rules = $scope.process.rules;
+
       // Cria a modal de Comentarios
       $ionicModal.fromTemplateUrl('modal-comments.html', { scope: $scope }).then(function(modal) {
         $scope.commentsSettingsModal = modal;
       });
-
-      $scope.process = response;
-      $scope.rules = $scope.process.rules;
     })
 
     .error(function (error) {
@@ -36,16 +36,6 @@ angular.module('starter.controllers')
   $scope.openComments = function() {
     // abre modal de comentários
     $scope.commentsSettingsModal.show();
-  };
-
-  $scope.openRuleQuestions = function(rule) {
-    $scope.currentRule = rule;
-
-    // Cria a modal de Pergunta de regras
-    $ionicModal.fromTemplateUrl('modal-rule-questions.html', { scope: $scope })
-      .then(function(modal) {
-        $scope.ruleQuestionsSettingsModal = modal;
-      });
   };
 }])
 

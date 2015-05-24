@@ -14,14 +14,9 @@
     {{process.description}}
 
     <ion-list>
-      <ion-item class="rule-item" ng-repeat="rule in rules" type="item-text-wrap">
+      <ion-item class="rule-item" ng-repeat="rule in rules" type="item-text-wrap" href="#/tab/process/{{process.id}}/rules/{{rule.id}}/questions">
         <div class="description">
           {{rule.description}}
-        </div>
-        <div class="actions">
-          <a class="tab-item" ng-click="openRuleQuestions(rule)">
-            <i class="icon ion-chatbox"></i>
-          </a>
         </div>
       </ion-item>
     </ion-list>
@@ -51,50 +46,6 @@
             Enviar
           </button>
         </ion-list>
-      </form>
-    </ion-content>
-  </div>
-</script>
-
-<script id="modal-rule-questions.html" type="text/ng-template">
-  <div id="modal-rule-questions" class="modal slide-in-up" ng-controller="RuleQuestionsCtrl">
-
-    <header class="bar bar-header bar-secondary">
-      <h1 class="title">Comentários</h1>
-      <button class="button button-clear button-primary" ng-click="close()">Fechar</button>
-    </header>
-
-    <ion-content class="questions" has-header="true" padding="true">
-      <ion-list ng-init="questions">
-        <ion-item ng-repeat="question in questions" type="item-text-wrap">
-          <strong>{{question.from}}</strong>: {{question.title}}
-
-          <ion-list>
-            <ion-item ng-repeat="reply in question.replies" type="item-text-wrap">
-              {{reply}}
-            </ion-item>
-          </ion-list>
-
-          <form ng-submit="addQuestionReply(question, question.reply)">
-            <label class="item item-input">
-              <textarea placeholder="Nova resposta" ng-model="question.reply"></textarea>
-            </label>
-
-            <button class="button button-block button-positive" type="submit">
-              Enviar
-            </button>
-          </form>
-        </ion-item>
-      </ion-list>
-
-      <form ng-submit="addQuestion(question.title)">
-        <label class="item item-input">
-          <textarea placeholder="Novo Comentário" ng-model="question.title"></textarea>
-        </label>
-
-        <button class="button button-block button-positive" type="submit">
-          Enviar
-        </button>
       </form>
     </ion-content>
   </div>

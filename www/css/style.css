@@ -22,7 +22,15 @@
   white-space: inherit;
 }
 
-.rule-item .description {
+.description {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.questions .question {
   float: left;
-  width: 80%;
+}
+
+.questions .replies {
+  float: right;
 }

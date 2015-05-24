@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('CommentsCtrl',['$scope', function($scope) {
+.controller('CommentsCtrl', ['$scope', function($scope) {
   $scope.comments = $scope.process.comments;
 
   $scope.close = function() {
