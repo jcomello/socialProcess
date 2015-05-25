@@ -9,6 +9,6 @@ angular.module('starter.controllers')
 
   // adiciona comentário à lista de comentários já existente
   $scope.addCommentary = function (comment) {
-    $scope.comments.push(comment);
+    $scope.comments.push({from: "Joaozinho", text: comment});
   };
 }]);

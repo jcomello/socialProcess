@@ -35,7 +35,7 @@
       <form ng-submit="addCommentary(comment)">
         <ion-list>
           <ion-item ng-repeat="comment in comments" type="item-text-wrap">
-            {{comment}}
+            <strong>{{comment.from}}</strong>: {{comment.text}}
           </ion-item>
 
           <label class="item item-input">
