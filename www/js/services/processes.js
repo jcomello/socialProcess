@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Processes', function($http, $filter) {
+.factory('Processes', ['$http', '$filter', function ($http, $filter) {
   var factory = {};
 
   factory.all = function () {
@@ -20,4 +20,4 @@ angular.module('starter.services', [])
   };
 
   return factory;
-});
+}]);

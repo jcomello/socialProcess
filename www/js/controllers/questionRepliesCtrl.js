@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('QuestionRepliesCtrl', ['$scope', '$stateParams', 'Processes', function($scope, $stateParams, Processes) {
+.controller('QuestionRepliesCtrl', ['$scope', '$stateParams', 'Processes', 'Users', function($scope, $stateParams, Processes, Users) {
 
   Processes.getQuestion($stateParams.processId, $stateParams.ruleId, $stateParams.questionId)
     .success(function (response) {
@@ -13,6 +13,6 @@ angular.module('starter.controllers')
     });
 
   $scope.addReply = function (reply) {
-    $scope.replies.push({from: "Johnny", text: reply})
+    $scope.replies.push({from: Users.getUser()['name'], text: reply})
   };
-}]);;
+}]);
