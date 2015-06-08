@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('CommentsCtrl', ['$scope', 'Users', function($scope, Users) {
+.controller('CommentsCtrl', ['$scope', 'Users','Processes', function($scope, Users, Processes) {
   $scope.comments = $scope.process.comments;
 
   $scope.close = function() {
@@ -9,6 +9,14 @@ angular.module('starter.controllers')
 
   // adiciona comentário à lista de comentários já existente
   $scope.addCommentary = function (comment) {
-    $scope.comments.push({from: Users.getUser()['name'], text: comment});
+    var data = {from: Users.getUser()['name'], text: comment}
+
+    Processes.setComment($scope.process.id, data)
+      .success(function (response) {
+        $scope.comments.push(response);
+      })
+      .error(function (error) {
+        console.log(error)
+      });
   };
 }]);
