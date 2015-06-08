@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('RuleQuestionsCtrl',['$scope', 'Processes', '$stateParams', '$ionicLoading', '$ionicModal', function($scope, Processes, $stateParams, $ionicLoading, $ionicModal) {
+.controller('RuleQuestionsCtrl',['$scope', 'Processes', '$stateParams', '$ionicLoading', '$ionicModal', 'Processes', 'Users', function($scope, Processes, $stateParams, $ionicLoading, $ionicModal, Processes, Users) {
   $scope.params = $stateParams;
 
   Processes.getRule($scope.params.processId, $scope.params.ruleId)
@@ -13,8 +13,14 @@ angular.module('starter.controllers')
   });
 
   $scope.addQuestion = function(title) {
-    var lastQuestion = $scope.questions[$scope.questions.length-1]
+    var data = {from: Users.getUser()['name'], title: title}
 
-    $scope.questions.push({id: lastQuestion.id+1, title: title, from: "João", replies: []});
+    Processes.setRuleQuestion($scope.params.processId, $scope.params.ruleId, data)
+      .success(function (response) {
+        $scope.questions.push(response);
+      })
+      .error(function (error) {
+        console.log(error);
+      });
   };
 }])
