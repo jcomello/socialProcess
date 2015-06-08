@@ -5,8 +5,7 @@ angular.module('starter.controllers')
 
   Processes.getRule($scope.params.processId, $scope.params.ruleId)
     .success(function (response) {
-      $scope.rule = response;
-      $scope.questions = $scope.rule.questions;
+      $scope.questions = response;
     })
 
     .error(function (error) {

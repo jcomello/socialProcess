@@ -18,7 +18,6 @@ angular.module('starter.controllers')
   Processes.get($stateParams.processId)
     .success(function (response) {
       $scope.hide();
-
       $scope.process = response;
       $scope.rules = $scope.process.rules;
 

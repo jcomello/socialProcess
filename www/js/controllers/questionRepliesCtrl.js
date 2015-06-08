@@ -4,8 +4,8 @@ angular.module('starter.controllers')
 
   Processes.getQuestion($stateParams.processId, $stateParams.ruleId, $stateParams.questionId)
     .success(function (response) {
-      $scope.question = response;
-      $scope.replies = $scope.question.replies
+      console.log(response)
+      $scope.replies = response;
     })
 
     .error(function (error) {
