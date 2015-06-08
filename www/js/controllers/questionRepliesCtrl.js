@@ -13,6 +13,14 @@ angular.module('starter.controllers')
     });
 
   $scope.addReply = function (reply) {
-    $scope.replies.push({from: Users.getUser()['name'], text: reply})
+    var data = {from: Users.getUser()['name'], text: reply}
+
+    Processes.setRuleQuestionReply($stateParams.processId, $stateParams.ruleId, $stateParams.questionId, data)
+      .success(function (response) {
+        $scope.replies.push(response)
+      })
+      .error(function(error) {
+        console.log(error)
+      });
   };
 }]);
