@@ -4,7 +4,7 @@
       <ion-list>
         <ion-item ng-repeat="reply in replies" type="item-text-wrap">
           <strong>{{reply.from}}</strong>: {{reply.text}}
-          <p ng-click="like(reply.id)">{{reply.likes}}  gostou?</p>
+          <p ng-click="like(reply.id)"><i class="icon ion-thumbsup"></i> {{reply.likes}}  gostou?</p>
         </ion-item>
 
         <label class="item item-input">
