@@ -26,7 +26,6 @@ angular.module('starter.controllers')
   $scope.like = function (replyId) {
     Processes.setRuleQuestionReplyLikes($stateParams.processId, $stateParams.ruleId, $stateParams.questionId, replyId)
       .success(function (response) {
-        console.log(response)
         $scope.replies = response
       })
       .error(function(error) {
