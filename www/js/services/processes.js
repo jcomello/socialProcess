@@ -2,7 +2,8 @@ angular.module('starter.services', [])
 
 .factory('Processes', ['$http', '$filter', function ($http, $filter) {
   var factory = {};
-  var endpoint = "http://regra-clara-service.herokuapp.com/"
+  // var endpoint = "http://regra-clara-service.herokuapp.com/"
+  var endpoint = "http://localhost:3000/"
 
   factory.all = function () {
     return $http.get(endpoint + "procedures");
@@ -30,6 +31,10 @@ angular.module('starter.services', [])
 
   factory.setRuleQuestionReply = function(processId, ruleId, questionId, data) {
     return $http.post(endpoint + "procedures/"+processId+"/rules/"+ ruleId +"/questions/"+ questionId +"/replies", {reply: data})
+  };
+
+  factory.setRuleQuestionReplyLikes = function(processId, ruleId, questionId, replyId) {
+    return $http.post(endpoint + "procedures/"+processId+"/rules/"+ ruleId +"/questions/"+ questionId +"/replies/" + replyId + "/likes")
   };
 
   return factory;
