@@ -2,8 +2,7 @@ angular.module('starter.services', [])
 
 .factory('Processes', ['$http', '$filter', function ($http, $filter) {
   var factory = {};
-  // var endpoint = "http://regra-clara-service.herokuapp.com/"
-  var endpoint = "http://localhost:3000/"
+  var endpoint = "http://regra-clara-service.herokuapp.com/"
 
   factory.all = function () {
     return $http.get(endpoint + "procedures");
